@@ -58,6 +58,10 @@
 			function delet(id) {
 				location.href = 'tarefa_controller.php?acao=remover&id=' + id;
 			}
+
+			function atualizar(id) {
+				location.href = 'tarefa_controller.php?acao=atualizar&id=' + id;
+			}
 		</script>
 	</head>
 
@@ -106,8 +110,10 @@
 									
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
 										<i class="fas fa-trash-alt fa-lg text-danger" onclick="delet(<?= $tarefas->id ?>)"></i>
-										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefas->id ?>, '<?= $tarefas->tarefa ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success" onclick="atualizar(<?= $tarefas->id ?>)"></i>
+										<? if($tarefas->status == "pendente") { ?> 
+											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefas->id ?>, '<?= $tarefas->tarefa ?>')"></i>
+											<i class="fas fa-check-square fa-lg text-success" onclick="atualizar(<?= $tarefas->id ?>)"></i>
+										<? }?>
 									</div>
 								</div>
 								<? } ?>
