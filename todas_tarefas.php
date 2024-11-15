@@ -1,3 +1,8 @@
+<?php 
+	$acao = 'recuperar';
+	require 'tarefa_controller.php';
+?>
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -44,6 +49,8 @@
 										<i class="fas fa-check-square fa-lg text-success"></i>
 									</div>
 								</div>
+
+								
 								
 							</div>
 						</div>
