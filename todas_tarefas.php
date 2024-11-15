@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<script>
 			function editar(id, edit) {
-				let form =document.createElement('form')
+				let form = document.createElement('form')
 				form.action = 'tarefa_controller.php?acao=editar';
 				form.method = 'post';
 				form.className = 'row'
@@ -54,6 +54,10 @@
 				//incluir form
 				tarefa.insertBefore(form, tarefa[0])
 			}
+
+			function delet(id) {
+				location.href = 'tarefa_controller.php?acao=remover&id=' + id;
+			}
 		</script>
 	</head>
 
@@ -66,6 +70,16 @@
 				</a>
 			</div>
 		</nav>
+
+		<? if(isset($_GET['edicao']) && $_GET['edicao'] == 1) { ?>
+				<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa editada com sucesso!</h5>
+				</div>
+		<? } else if(isset($_GET['delecao']) && $_GET['delecao'] == 1) { ?>
+			<div class="bg-danger pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa foi deletada com sucesso!</h5>
+				</div>
+		<? } ?>
 
 		<div class="container app">
 			<div class="row">
@@ -91,9 +105,9 @@
 									</div>
 									
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="delet(<?= $tarefas->id ?>)"></i>
 										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefas->id ?>, '<?= $tarefas->tarefa ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="atualizar(<?= $tarefas->id ?>)"></i>
 									</div>
 								</div>
 								<? } ?>
